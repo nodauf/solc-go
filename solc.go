@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	"rogchap.com/v8go"
+	"github.com/nmvalera/v8go"
 )
 
 type Solc interface {
