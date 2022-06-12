@@ -1,3 +1,4 @@
+clone from: https://github.com/nmvalera/solc-go
 # Solc-Go
 
 Golang bindings for the [Solidity compiler](https://github.com/ethereum/solidity).
