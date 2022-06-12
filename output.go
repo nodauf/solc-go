@@ -117,16 +117,27 @@ type ASTsolc struct {
 					Src                      string `json:"src"`
 				} `json:"statements"`
 			} `json:"body"`
-			Documentation    interface{}   `json:"documentation"`
-			FunctionSelector string        `json:"functionSelector"`
-			ID               int64         `json:"id"`
-			Implemented      bool          `json:"implemented"`
-			Kind             string        `json:"kind"`
-			Modifiers        []interface{} `json:"modifiers"`
-			Name             string        `json:"name"`
-			NodeType         string        `json:"nodeType"`
-			Overrides        interface{}   `json:"overrides"`
-			Parameters       struct {
+			Documentation    interface{} `json:"documentation"`
+			FunctionSelector string      `json:"functionSelector"`
+			ID               int64       `json:"id"`
+			Implemented      bool        `json:"implemented"`
+			Kind             string      `json:"kind"`
+			Modifiers        []struct {
+				ID           int64 `json:"id"`
+				ModifierName struct {
+					ID                    int64  `json:"id"`
+					Name                  string `json:"name"`
+					NodeType              string `json:"nodeType"`
+					ReferencedDeclaration int64  `json:"referencedDeclaration"`
+					Src                   string `json:"src"`
+				} `json:"modifierName"`
+				NodeType string `json:"nodeType"`
+				Src      string `json:"src"`
+			} `json:"modifiers"`
+			Name       string      `json:"name"`
+			NodeType   string      `json:"nodeType"`
+			Overrides  interface{} `json:"overrides"`
+			Parameters struct {
 				ID         int64  `json:"id"`
 				NodeType   string `json:"nodeType"`
 				Parameters []struct {
@@ -160,10 +171,35 @@ type ASTsolc struct {
 				Src string `json:"src"`
 			} `json:"parameters"`
 			ReturnParameters struct {
-				ID         int64         `json:"id"`
-				NodeType   string        `json:"nodeType"`
-				Parameters []interface{} `json:"parameters"`
-				Src        string        `json:"src"`
+				ID         int64  `json:"id"`
+				NodeType   string `json:"nodeType"`
+				Parameters []struct {
+					Constant         bool   `json:"constant"`
+					ID               int64  `json:"id"`
+					Mutability       string `json:"mutability"`
+					Name             string `json:"name"`
+					NodeType         string `json:"nodeType"`
+					Scope            int64  `json:"scope"`
+					Src              string `json:"src"`
+					StateVariable    bool   `json:"stateVariable"`
+					StorageLocation  string `json:"storageLocation"`
+					TypeDescriptions struct {
+						TypeIdentifier string `json:"typeIdentifier"`
+						TypeString     string `json:"typeString"`
+					} `json:"typeDescriptions"`
+					TypeName struct {
+						ID               int64  `json:"id"`
+						Name             string `json:"name"`
+						NodeType         string `json:"nodeType"`
+						Src              string `json:"src"`
+						TypeDescriptions struct {
+							TypeIdentifier string `json:"typeIdentifier"`
+							TypeString     string `json:"typeString"`
+						} `json:"typeDescriptions"`
+					} `json:"typeName"`
+					Visibility string `json:"visibility"`
+				} `json:"parameters"`
+				Src string `json:"src"`
 			} `json:"returnParameters"`
 			Scope           int64  `json:"scope"`
 			Src             string `json:"src"`
