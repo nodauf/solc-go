@@ -27,7 +27,7 @@ type SourceLocation struct {
 
 type SourceOut struct {
 	ID        int             `json:"id,omitempty"`
-	AST       json.RawMessage `json:"ast,omitempty"`
+	AST       ASTsolc `json:"ast,omitempty"`
 	LegacyAST json.RawMessage `json:"legacyAST,omitempty"`
 }
 
@@ -67,3 +67,55 @@ type EWASM struct {
 	Wast string `json:"wast,omitempty"`
 	Wasm string `json:"wasm,omitempty"`
 }
+
+
+type ASTsolc struct {
+	AbsolutePath    string `json:"absolutePath"`
+	ExportedSymbols struct {
+		One []int64 `json:"One"`
+	} `json:"exportedSymbols"`
+	ID       int64  `json:"id"`
+	NodeType string `json:"nodeType"`
+	Nodes    []struct {
+		Abstract                bool          `json:"abstract"`
+		BaseContracts           []interface{} `json:"baseContracts"`
+		ContractDependencies    []interface{} `json:"contractDependencies"`
+		ContractKind            string        `json:"contractKind"`
+		Documentation           interface{}   `json:"documentation"`
+		FullyImplemented        bool          `json:"fullyImplemented"`
+		ID                      int64         `json:"id"`
+		LinearizedBaseContracts []int64       `json:"linearizedBaseContracts"`
+		Literals                []string      `json:"literals"`
+		Name                    string        `json:"name"`
+		NodeType                string        `json:"nodeType"`
+		Nodes                   []struct {
+			Body struct {
+				ID         int64  `json:"id"`
+				NodeType   string `json:"nodeType"`
+				Src        string `json:"src"`
+				Statements []struct {
+					Expression struct {
+						ArgumentTypes    interface{} `json:"argumentTypes"`
+						HexValue         string      `json:"hexValue"`
+						ID               int64       `json:"id"`
+						IsConstant       bool        `json:"isConstant"`
+						IsLValue         bool        `json:"isLValue"`
+						IsPure           bool        `json:"isPure"`
+						Kind             string      `json:"kind"`
+						LValueRequested  bool        `json:"lValueRequested"`
+						NodeType         string      `json:"nodeType"`
+						Src              string      `json:"src"`
+						Subdenomination  interface{} `json:"subdenomination"`
+						TypeDescriptions struct {
+							TypeIdentifier string `json:"typeIdentifier"`
+							TypeString     string `json:"typeString"`
+						} `json:"typeDescriptions"`
+						Value string `json:"value"`
+					} `json:"expression"`
+					FunctionReturnParameters int64  `json:"functionReturnParameters"`
+					ID                       int64  `json:"id"`
+					NodeType                 string `json:"nodeType"`
+					Src                      string `json:"src"`
+				} `json:"statements"`
+			} `json:"body"`
+			Documentation    interface{}   `json:"documentation"`
