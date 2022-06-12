@@ -71,7 +71,7 @@ type EWASM struct {
 type ASTsolc struct {
 	AbsolutePath    string `json:"absolutePath"`
 	ExportedSymbols struct {
-		One []int64 `json:"One"`
+		One interface{} `json:"One"`
 	} `json:"exportedSymbols"`
 	ID       int64  `json:"id"`
 	NodeType string `json:"nodeType"`
@@ -127,24 +127,19 @@ type ASTsolc struct {
 			NodeType         string        `json:"nodeType"`
 			Overrides        interface{}   `json:"overrides"`
 			Parameters       struct {
-				ID         int64         `json:"id"`
-				NodeType   string        `json:"nodeType"`
-				Parameters []interface{} `json:"parameters"`
-				Src        string        `json:"src"`
-			} `json:"parameters"`
-			ReturnParameters struct {
 				ID         int64  `json:"id"`
 				NodeType   string `json:"nodeType"`
 				Parameters []struct {
-					Constant         bool        `json:"constant"`
-					ID               int64       `json:"id"`
-					Name             string      `json:"name"`
-					NodeType         string      `json:"nodeType"`
-					Overrides        interface{} `json:"overrides"`
-					Scope            int64       `json:"scope"`
-					Src              string      `json:"src"`
-					StateVariable    bool        `json:"stateVariable"`
-					StorageLocation  string      `json:"storageLocation"`
+					Constant         bool   `json:"constant"`
+					ID               int64  `json:"id"`
+					Mutability       string `json:"mutability"`
+					Name             string `json:"name"`
+					NameLocation     string `json:"nameLocation"`
+					NodeType         string `json:"nodeType"`
+					Scope            int64  `json:"scope"`
+					Src              string `json:"src"`
+					StateVariable    bool   `json:"stateVariable"`
+					StorageLocation  string `json:"storageLocation"`
 					TypeDescriptions struct {
 						TypeIdentifier string `json:"typeIdentifier"`
 						TypeString     string `json:"typeString"`
@@ -154,15 +149,21 @@ type ASTsolc struct {
 						Name             string `json:"name"`
 						NodeType         string `json:"nodeType"`
 						Src              string `json:"src"`
+						StateMutability  string `json:"stateMutability"`
 						TypeDescriptions struct {
 							TypeIdentifier string `json:"typeIdentifier"`
 							TypeString     string `json:"typeString"`
 						} `json:"typeDescriptions"`
 					} `json:"typeName"`
-					Value      interface{} `json:"value"`
-					Visibility string      `json:"visibility"`
+					Visibility string `json:"visibility"`
 				} `json:"parameters"`
 				Src string `json:"src"`
+			} `json:"parameters"`
+			ReturnParameters struct {
+				ID         int64         `json:"id"`
+				NodeType   string        `json:"nodeType"`
+				Parameters []interface{} `json:"parameters"`
+				Src        string        `json:"src"`
 			} `json:"returnParameters"`
 			Scope           int64  `json:"scope"`
 			Src             string `json:"src"`
