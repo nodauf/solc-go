@@ -201,11 +201,46 @@ type ASTsolc struct {
 				} `json:"parameters"`
 				Src string `json:"src"`
 			} `json:"returnParameters"`
-			Scope           int64  `json:"scope"`
-			Src             string `json:"src"`
-			StateMutability string `json:"stateMutability"`
-			Virtual         bool   `json:"virtual"`
-			Visibility      string `json:"visibility"`
+			Scope            int64  `json:"scope"`
+			Src              string `json:"src"`
+			StateMutability  string `json:"stateMutability"`
+			Virtual          bool   `json:"virtual"`
+			Visibility       string `json:"visibility"`
+			TypeDescriptions struct {
+				TypeIdentifier string `json:"typeIdentifier"`
+				TypeString     string `json:"typeString"`
+			} `json:"typeDescriptions"`
+			TypeName struct {
+				ID      int64 `json:"id"`
+				KeyType struct {
+					ID               int64  `json:"id"`
+					Name             string `json:"name"`
+					NodeType         string `json:"nodeType"`
+					Src              string `json:"src"`
+					TypeDescriptions struct {
+						TypeIdentifier string `json:"typeIdentifier"`
+						TypeString     string `json:"typeString"`
+					} `json:"typeDescriptions"`
+				} `json:"keyType"`
+				Name             string `json:"name"`
+				NodeType         string `json:"nodeType"`
+				Src              string `json:"src"`
+				StateMutability  string `json:"stateMutability"`
+				TypeDescriptions struct {
+					TypeIdentifier string `json:"typeIdentifier"`
+					TypeString     string `json:"typeString"`
+				} `json:"typeDescriptions"`
+				ValueType struct {
+					ID               int64  `json:"id"`
+					Name             string `json:"name"`
+					NodeType         string `json:"nodeType"`
+					Src              string `json:"src"`
+					TypeDescriptions struct {
+						TypeIdentifier string `json:"typeIdentifier"`
+						TypeString     string `json:"typeString"`
+					} `json:"typeDescriptions"`
+				} `json:"valueType"`
+			} `json:"typeName"`
 		} `json:"nodes"`
 		Scope int64  `json:"scope"`
 		Src   string `json:"src"`
